@@ -7,6 +7,11 @@ class NewsscraperSpider(scrapy.Spider):
     allowed_domains = ['www.moneycontrol.com']
     start_urls = ['https://www.moneycontrol.com/news/business/stocks/']
 
+    def parseNewsPage(self, response, data):
+        newsContent = response.xpath("..//div[@class='content_wrapper arti-flow']//p//text()").extract()
+        data["content"] = '\n'.join(newsContent).strip()
+        yield data
+
     def parse(self, response):
         newsRows = response.xpath("..//li[@class='clearfix']")
         for newsRow in newsRows:
@@ -14,9 +19,10 @@ class NewsscraperSpider(scrapy.Spider):
             newsURL = newsRow.xpath("h2//a//@href").extract_first()
             newsdate = newsRow.xpath(".//span//text()").extract_first()
             newsGist = newsRow.xpath(".//p//text()").extract_first()
-            yield {
+            data = {
                 "title": newsTitle,
                 "link": newsURL,
                 "date": newsdate,
                 "gist": newsGist
-            } 
+            }
+            yield scrapy.Request(newsURL, callback=self.parseNewsPage, cb_kwargs=dict(data=data)) 
