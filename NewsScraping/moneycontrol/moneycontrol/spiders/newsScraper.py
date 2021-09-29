@@ -26,3 +26,7 @@ class NewsscraperSpider(scrapy.Spider):
                 "gist": newsGist
             }
             yield scrapy.Request(newsURL, callback=self.parseNewsPage, cb_kwargs=dict(data=data)) 
+        nextPage = response.xpath("..//a[@class='last']//@href").extract_first()
+        if nextPage:
+            absoluteURL = f"https://www.moneycontrol.com{nextPage}"
+            yield scrapy.Request(absoluteURL, callback=self.parse)
