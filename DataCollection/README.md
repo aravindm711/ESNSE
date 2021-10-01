@@ -1,5 +1,10 @@
 # Data Collection
 
+## Prerequisite
+
+- Driver for [chrome](https://chromedriver.chromium.org/downloads)
+- Driver for [firefox](https://github.com/mozilla/geckodriver/releases/)
+
 ## Scraping Stock News
 
 - Moneycontrol has static pages, hence data is scraped by iterating each section of the page and navigating via pagenation links.
@@ -21,6 +26,7 @@
 $ cd DataCollection/stock_news/stock_news/spiders
 $ scrapy crawl economic_times -o economic_times_stock_news.json
 $ scrapy crawl money_control -o money_control_stock_news.json
+$ python financial_express.py
 ```
 
 ### Tools and Technology
