@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-
-# Scrapy settings for moneycontrol project
+# Scrapy settings for stock_news project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'moneycontrol'
+BOT_NAME = 'stock_news'
 
-SPIDER_MODULES = ['moneycontrol.spiders']
-NEWSPIDER_MODULE = 'moneycontrol.spiders'
+SPIDER_MODULES = ['stock_news.spiders']
+NEWSPIDER_MODULE = 'stock_news.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'moneycontrol (+http://www.yourdomain.com)'
+#USER_AGENT = 'stock_news (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'moneycontrol.middlewares.MoneycontrolSpiderMiddleware': 543,
+#    'stock_news.middlewares.StockNewsSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'moneycontrol.middlewares.MoneycontrolDownloaderMiddleware': 543,
+#    'stock_news.middlewares.StockNewsDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'moneycontrol.pipelines.MoneycontrolPipeline': 300,
+#    'stock_news.pipelines.StockNewsPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
