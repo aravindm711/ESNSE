@@ -2,14 +2,14 @@
 import scrapy
 
 
-class NewsscraperSpider(scrapy.Spider):
-    name = 'newsScraper'
-    allowed_domains = ['www.moneycontrol.com']
-    start_urls = ['https://www.moneycontrol.com/news/business/stocks/']
+class MC_Spider(scrapy.Spider):
+    name = "money_control"
+    allowed_domains = ["www.moneycontrol.com"]
+    start_urls = ["https://www.moneycontrol.com/news/business/stocks/"]
 
     def parseNewsPage(self, response, data):
         newsContent = response.xpath("..//div[@class='content_wrapper arti-flow']//p//text()").extract()
-        data["content"] = '\n'.join(newsContent).strip()
+        data["content"] = "\n".join(newsContent).strip()
         yield data
 
     def parse(self, response):
@@ -25,7 +25,7 @@ class NewsscraperSpider(scrapy.Spider):
                 "date": newsdate,
                 "gist": newsGist
             }
-            yield scrapy.Request(newsURL, callback=self.parseNewsPage, cb_kwargs=dict(data=data)) 
+            yield scrapy.Request(newsURL, callback=self.parseNewsPage, cb_kwargs=dict(data=data))
         nextPage = response.xpath("..//a[@class='last']//@href").extract_first()
         if nextPage:
             absoluteURL = f"https://www.moneycontrol.com{nextPage}"
