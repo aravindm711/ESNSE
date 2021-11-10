@@ -1,6 +1,7 @@
 from elasticsearch import Elasticsearch
 import sys
 import json
+from flask import Flask, request
 
 # Global
 es = Elasticsearch(
@@ -8,6 +9,7 @@ es = Elasticsearch(
     port=9200
 
 )
+app = Flask(__name__)
 
 def insert_data(index):
     if(len(sys.argv) > 1):
@@ -67,10 +69,23 @@ def get_stock_news(query):
             "query": query,
             "fields": ["title^3", "gist^2", "content"]
             }
-        }
+        },
+        "_source": ["title", "gist", "date", "link"]
     }
     return es.search(index="stock_news", body=body)['hits']['hits']
+ 
+@app.route('/search')
+def search():
+    if "query" in request.args:
+        query = request.args.get('query') 
+        result = {}
+        result['stocks'] = get_stock_info(query)
+        result['news'] = get_stock_news(query)
+        return result
+    else:
+        return "Please enter a query string"
 
-if __name__ == '__main__':
-    print(json.dumps(get_stock_info("SBI"), indent=2))
-    print(json.dumps(get_stock_news("Indian Railway"), indent=2))
+@app.route('/')
+def home():
+    return "Welcome to ESNSE"
+
