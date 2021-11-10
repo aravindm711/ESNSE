@@ -29,6 +29,16 @@ $ scrapy crawl money_control -o money_control_stock_news.json
 $ python financial_express.py
 ```
 
+### Data Gateway
+
+Pushes json file to elastic when provided with path, this script can be called once the scraper is done with it's job.
+
+To run this
+
+```bash
+python push_elastic.py {path-to-file}
+```
+
 ### Tools and Technology
 
 - Python 3.x
