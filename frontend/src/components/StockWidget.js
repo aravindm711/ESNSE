@@ -41,7 +41,10 @@ export default class StockWidget extends React.PureComponent {
   }
   render() {
     return (
-      <div class="tradingview-widget-container" ref={this._ref}>
+      <div
+        className="border-2 rounded-lg shadow-md tradingview-widget-container"
+        ref={this._ref}
+      >
         <div id="tradingview_15cf2"></div>
       </div>
     );
