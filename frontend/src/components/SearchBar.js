@@ -1,11 +1,19 @@
 import React from "react";
 
-function SearchBar() {
+async function getNews(e, setResult) {
+  e.preventDefault();
+  const query = document.getElementById("query").value;
+  await fetch(`http://localhost:5000/search?query=${query}`)
+    .then((res) => res.json())
+    .then((result) => setResult(result));
+}
+
+function SearchBar(props) {
   return (
     <div>
       <div className="p-2 relative mx-auto text-gray-600">
         <input
-          id="stockName"
+          id="query"
           className="border-2 border-gray-300 bg-white h-10 w-full px-5 pr-16 rounded-lg text-sm focus:outline-none"
           list="stock-list"
           type="search"
@@ -15,7 +23,7 @@ function SearchBar() {
         <button
           type="submit"
           className="absolute right-0 top-0 mt-5 mr-4"
-          onClick={(e) => console.log("Click")}
+          onClick={(e) => getNews(e, props.setResult)}
         >
           <svg
             className="text-gray-600 h-4 w-4 fill-current"

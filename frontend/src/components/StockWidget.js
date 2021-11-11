@@ -6,24 +6,24 @@ export default class StockWidget extends React.PureComponent {
     this._ref = React.createRef();
   }
   componentDidMount() {
-    var symbols = JSON.stringify(this.props.symbols);
     const scripttv = document.createElement("script");
     scripttv.src = "https://s3.tradingview.com/tv.js";
     scripttv.async = true;
     this._ref.current.appendChild(scripttv);
+    var symbols = JSON.stringify(this.props.symbols);
     const script = document.createElement("script");
     script.innerHTML = ` new TradingView.MediumWidget(
   {
   "symbols": ${symbols},
   "chartOnly": false,
-  "width": 500,
-  "height": 400,
+  "width": "100%",
+  "height": "100%",
   "locale": "in",
   "colorTheme": "transparent",
   "gridLineColor": "rgba(240, 243, 250, 0)",
   "fontColor": "#787B86",
   "isTransparent": false,
-  "autosize": false,
+  "autosize": true,
   "showFloatingTooltip": true,
   "showVolume": false,
   "scalePosition": "no",

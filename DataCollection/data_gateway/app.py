@@ -2,6 +2,7 @@ from elasticsearch import Elasticsearch
 import sys
 import json
 from flask import Flask, request
+from flask_cors import CORS
 
 # Global
 es = Elasticsearch(
@@ -10,6 +11,12 @@ es = Elasticsearch(
 
 )
 app = Flask(__name__)
+CORS(app)
+cors = CORS(app, resource={
+    r"/*":{
+        "origins":"*"
+    }
+})
 
 def insert_data(index):
     if(len(sys.argv) > 1):
