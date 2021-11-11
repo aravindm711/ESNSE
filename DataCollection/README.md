@@ -23,7 +23,7 @@
 ### How to run?
 
 ```bash
-$ cd DataCollection/stock_news/stock_news/spiders
+$ cd DataCollection/stock_news/spiders
 $ scrapy crawl economic_times -o economic_times_stock_news.json
 $ scrapy crawl money_control -o money_control_stock_news.json
 $ python financial_express.py
@@ -45,3 +45,4 @@ python push_elastic.py {path-to-file}
 - Scrapy
 - BeautifulSoup
 - Selinium
+- Flask
