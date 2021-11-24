@@ -5,7 +5,13 @@ async function getNews(e, setResult) {
   const query = document.getElementById("query").value;
   await fetch(`http://localhost:5000/search?query=${query}`)
     .then((res) => res.json())
-    .then((result) => setResult(result));
+    .then((result) => {
+      result.tickers = [];
+      result.stocks.map((symbol) =>
+        result.tickers.push([symbol._source.SYMBOL])
+      );
+      setResult(result);
+    });
 }
 
 function SearchBar(props) {

@@ -7,7 +7,7 @@ export default class StockWidget extends React.PureComponent {
   }
   componentDidMount() {
     const scripttv = document.createElement("script");
-    scripttv.src = "https://s3.tradingview.com/tv.js";
+    scripttv.src = "./tv.js";
     scripttv.async = true;
     this._ref.current.appendChild(scripttv);
     var symbols = JSON.stringify(this.props.symbols);
